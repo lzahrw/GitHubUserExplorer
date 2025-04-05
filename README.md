@@ -1,181 +1,117 @@
 # GitHubUserInfoApp
 
-GitHubUserInfoApp is a Kotlin-based terminal application that retrieves GitHub user information using GitHub's REST API. The app leverages Retrofit for HTTP networking and Gson for JSON deserialization. It features an in-memory cache to avoid duplicate API calls and provides a menu-driven interface for interacting with the data.
+A terminal-based Kotlin application to fetch and display GitHub user information using GitHub's REST API. It utilizes Retrofit for networking, Gson for JSON parsing, and includes in-memory caching to minimize duplicate API calls.
 
-## Features
+## 🚀 Features
 
-- **Retrieve User Information:**  
-  Fetch user details (username, number of followers, number of following, account creation date, and list of public repositories) from GitHub.
+- **Fetch GitHub User Details**  
+  Retrieve username, followers, following, account creation date, and public repositories.
 
-- **In-Memory Caching:**  
-  Cache user data to prevent repeated API calls for the same user.
+- **In-Memory Caching**  
+  Prevents redundant API requests by storing previously retrieved user data.
 
-- **Search Functionality:**  
-  - Search for a user by username within the cached data.
-  - Search for a repository by name across all cached users.
+- **Search Functionality**  
+  - Search cached users by username.  
+  - Search all cached repositories by name.
 
-- **Modular & Extensible Design:**  
-  Structured with separate modules (data models, networking, caching, and UI) to ensure scalability and ease of maintenance.
+- **Modular Design**  
+  Organized into models, networking, caching, and UI components for better scalability and maintainability.
 
-## Project Structure
+---
 
-GitHubUserInfoApp/ ├── build.gradle.kts // Gradle build file with dependencies ├── settings.gradle.kts // Gradle settings file └── src/ └── main/ └── kotlin/ └── com/ └── example/ └── githubuserinfo/ ├── Main.kt // Application entry point ├── cache/ │ └── UserCache.kt // In-memory cache implementation ├── model/ │ ├── GitHubUser.kt // Combined user data model (user details + repos) │ ├── GitHubUserResponse.kt // Data class for GitHub API user response │ └── Repository.kt // Data class for repository details ├── network/ │ └── GitHubService.kt // Retrofit interface for GitHub API endpoints └── ui/ └── Menu.kt // Menu-driven interface handling user input/output
+## 📁 Project Structure
 
-markdown
-Copy
+```
+GitHubUserInfoApp/
+├── build.gradle.kts
+├── settings.gradle.kts
+└── src/
+    └── main/
+        └── kotlin/
+            └── com/example/githubuserinfo/
+                ├── Main.kt
+                ├── cache/
+                │   └── UserCache.kt
+                ├── model/
+                │   ├── GitHubUser.kt
+                │   ├── GitHubUserResponse.kt
+                │   └── Repository.kt
+                ├── network/
+                │   └── GitHubService.kt
+                └── ui/
+                    └── Menu.kt
+```
 
-## Requirements
+---
 
-- **Java Development Kit (JDK):** Version 8 or later
-- **Kotlin:** Version 1.8.0 or later
-- **Gradle:** For building and running the project
-- **Internet Connection:** Required for making API calls to GitHub
+## ⚙️ Requirements
 
-## Installation & Setup
+- JDK 8 or higher  
+- Kotlin 1.8.0 or higher  
+- Gradle  
+- Internet connection (for API access)
 
-1. **Clone the Repository:**
+---
 
+## 🛠️ Installation & Setup
+
+1. **Clone the repository**  
    ```bash
    git clone https://github.com/yourusername/GitHubUserInfoApp.git
    cd GitHubUserInfoApp
-Build the Project:
+   ```
 
-Use Gradle to build the project:
+2. **Build the project**  
+   ```bash
+   ./gradlew build
+   ```
 
-bash
-Copy
-./gradlew build
-Run the Application:
+3. **Run the application**  
+   ```bash
+   ./gradlew run
+   ```
 
-Launch the application with:
+---
 
-bash
-Copy
-./gradlew run
-Usage
-When you run the application, you'll see a menu similar to the following:
+## 📋 Usage
 
-markdown
-Copy
+Once the application is running, you'll see a menu like:
+
+```
 --- GitHub User Information ---
 1. Retrieve user information by username
-2. Display the list of users in memory
-3. Search by username among users in memory
-4. Search by repository name among data in memory
+2. Display cached users
+3. Search user by username
+4. Search repository by name
 5. Exit
-Enter your choice:
-Sample Interaction
-1. Retrieve User Information
-User Input:
+```
 
-yaml
-Copy
-Enter your choice: 1
-Enter GitHub username: octocat
-Expected Output:
+Use the number keys to navigate through the options and interact with the app.
 
-yaml
-Copy
-Fetching user information...
-Username: octocat
-Followers: 3900
-Following: 9
-Account Created: 2011-01-25T18:44:36Z
-Repositories:
-  - Spoon-Knife
-  - Hello-World
-  - octocat.github.io
-2. Display Cached Users
-User Input:
+---
 
-yaml
-Copy
-Enter your choice: 2
-Expected Output:
+## ✅ Testing
 
-yaml
-Copy
-Cached Users:
-Username: octocat
-Followers: 3900
-Following: 9
-Account Created: 2011-01-25T18:44:36Z
-Repositories:
-  - Spoon-Knife
-  - Hello-World
-  - octocat.github.io
-3. Search by Username
-User Input:
+### Manual Testing
 
-yaml
-Copy
-Enter your choice: 3
-Enter username to search: octocat
-Expected Output:
+Run the app and:
 
-yaml
-Copy
-Username: octocat
-Followers: 3900
-Following: 9
-Account Created: 2011-01-25T18:44:36Z
-Repositories:
-  - Spoon-Knife
-  - Hello-World
-  - octocat.github.io
-4. Search by Repository Name
-User Input:
+- Check that user info is fetched and cached  
+- Confirm that search features work as expected  
+- Verify error handling for invalid input or network issues  
 
-pgsql
-Copy
-Enter your choice: 4
-Enter repository name to search: Spoon
-Expected Output:
+---
 
-sql
-Copy
-Repositories matching 'Spoon':
-User: octocat
-  - Spoon-Knife
-5. Exit the Application
-User Input:
+## 🤝 Contributing
 
-yaml
-Copy
-Enter your choice: 5
-Expected Output:
+Contributions are welcome! If you'd like to fix a bug, suggest an improvement, or add a feature:
 
-nginx
-Copy
-Exiting program. Goodbye!
-Testing
-Automated Testing
-Unit Tests & Integration Tests:
-To run tests, execute:
+- Fork the repository
+- Create a new branch
+- Submit a pull request
 
-bash
-Copy
-./gradlew test
-Tests cover:
+For major changes, please open an issue first to discuss what you’d like to change.
 
-In-memory cache functionality
+---
 
-Retrofit network calls (using MockWebServer)
 
-Integration of network and caching components
-
-Manual Testing
-Follow the Usage section above to interact with the application in your terminal.
-
-Validate that:
-
-User information is correctly fetched and displayed.
-
-The cache stores user data to avoid duplicate API calls.
-
-Search operations return the expected results.
-
-The application gracefully handles errors (e.g., invalid usernames).
-
-Contributing
-Contributions are welcome! If you have suggestions, bug fixes, or new features, please open an issue or submit a pull request. For major changes, please discuss them via an issue first.
